@@ -33,7 +33,7 @@
     <xsl:output method="xml"
         doctype-public="-//OASIS//DTD DITA Topic//EN"
         doctype-system="topic.dtd"
-        indent="yes"/>
+        indent="no"/>
     
     <xsl:param name="text-encoding" as="xs:string" select="'UTF-8'"/>
     <xsl:param name="propertiesFile" as="xs:string"/>
