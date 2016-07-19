@@ -99,15 +99,30 @@
     
     <xsl:template match="/*">
         <xsl:variable name="properties" select="unparsed-text($propertiesFile)"/>
-        
+        <xsl:variable name="properties.filename">
+            <xsl:call-template name="getFilenameFromPath"><xsl:with-param name="string" select="$propertiesFile"/><xsl:with-param name="char" select="'/'"/></xsl:call-template>
+        </xsl:variable>
         <xsl:variable name="inputFilePath" select="base-uri()"/>
         <xsl:variable name="stylesheetFilePath" select="base-uri(document(''))"/>
         
         <xsl:variable name="lines" select="tokenize($properties, '&#xa;')" as="xs:string+"/>
         
         <topic id="properties">
-            <title><xsl:value-of select="$propertiesFile"/></title>
-            <shortdesc>Input: <xsl:value-of select="$propertiesFile"/>; Output: <xsl:call-template name="getFilenameFromPath"><xsl:with-param name="string" select="$inputFilePath"/><xsl:with-param name="char" select="'/'"/></xsl:call-template>; Stylesheet: <xsl:call-template name="getFilenameFromPath"><xsl:with-param name="string" select="$stylesheetFilePath"/><xsl:with-param name="char" select="'/'"/></xsl:call-template></shortdesc>
+            <title><xsl:value-of select="$properties.filename"/></title>
+            <prolog>
+                <metadata>
+                    <othermeta name="input">
+                        <xsl:attribute name="content"><xsl:value-of select="$properties.filename"/></xsl:attribute>
+                    </othermeta>
+                    <othermeta name="conversion-date">
+                        <xsl:attribute name="content"><xsl:value-of select="current-date()"/></xsl:attribute>
+                    </othermeta>
+                    <othermeta name="stylesheet">
+                        <xsl:attribute name="content"><xsl:call-template name="getFilenameFromPath"><xsl:with-param name="string" select="$stylesheetFilePath"/><xsl:with-param name="char" select="'/'"/></xsl:call-template></xsl:attribute>
+                    </othermeta>
+                </metadata>
+            </prolog>
+            
             <body>
                 <ul>
                     <xsl:for-each select="$lines">
@@ -115,9 +130,7 @@
                         <xsl:variable name="value" select="fn:getValue(.)" as="xs:string+"/>
                         <xsl:choose>
                             <xsl:when test="$key != '' and $value != ''">
-                                <xsl:element name="li">
-                                    <xsl:element name="keyword"><xsl:attribute name="id"><xsl:value-of select="$key"/></xsl:attribute><xsl:value-of select="$value"/></xsl:element>
-                                </xsl:element>                                
+                                <xsl:element name="li"><xsl:element name="keyword"><xsl:attribute name="id"><xsl:value-of select="$key"/></xsl:attribute><xsl:value-of select="$value"/></xsl:element></xsl:element>                                
                             </xsl:when>
                             <xsl:otherwise>
                                 <!-- -->
