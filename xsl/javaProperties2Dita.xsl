@@ -29,7 +29,7 @@
 
     <xsl:output method="xml"
         doctype-public="-//OASIS//DTD DITA Topic//EN"
-        doctype-system="topic.dtd"
+        doctype-system="http://docs.oasis-open.org/dita/v1.2/os/dtd1.2/technicalContent/dtd/topic.dtd"
         indent="yes"/>
 
     <xsl:param name="text-encoding" as="xs:string" select="'UTF-8'"/>
