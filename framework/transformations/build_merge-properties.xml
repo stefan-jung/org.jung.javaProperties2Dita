@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="merge-properties">
+  <target name="merge-properties" description="Merge all Properties files in a directory to a single file.">
+    <concat dest="${output.file}" >
+      <fileset dir=".">
+        <include name="**/*.properties"/>
+      </fileset>
+    </concat>
+  </target>
+</project>

@@ -118,12 +118,7 @@
                         <xsl:variable name="value" select="normalize-space(fn:getValue(.))" as="xs:string+"/>
                         <xsl:choose>
                             <xsl:when test="$key != '' and $value != ''">
-                                <xsl:element name="li">
-                                    <xsl:element name="keyword">
-                                        <xsl:attribute name="id"><xsl:value-of select="$key"/></xsl:attribute>
-                                        <xsl:value-of select="$value"/>
-                                    </xsl:element>
-                                </xsl:element>                                
+                                <xsl:element name="li"><xsl:element name="keyword"><xsl:attribute name="id"><xsl:value-of select="$key"/></xsl:attribute><xsl:value-of select="$value"/></xsl:element></xsl:element>                                
                             </xsl:when>
                         </xsl:choose>
                     </xsl:for-each>
