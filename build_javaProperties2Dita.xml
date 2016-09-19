@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="javaProperties2Dita">
+
+    <macrodef name="convert-properties-to-dita">
+        <attribute name="input"/>
+        <attribute name="output"/>
+        <sequential>
+            <java classname="net.sf.saxon.Transform">
+                <classpath>
+                    <pathelement path="${dita.dir}/lib/saxon*.jar"/>
+                </classpath>
+                <arg value="-s:${dita.dir}/plugins/org.doctales.javaProperties2Dita/xsl/dummy.xml"/>
+                <arg value="-o:@{output}"/>
+                <arg value="-xsl:${dita.dir}/plugins/org.doctales.javaProperties2Dita/xsl/javaProperties2Dita.xsl"/>
+                <arg value="propertiesFile=@{input}"/>
+            </java>
+        </sequential>
+    </macrodef>
+  
+</project>
