@@ -34,50 +34,5 @@
             </java>
         </sequential>
     </macrodef>
-
-    <!-- Merge all Properties files in a directory to a single file. -->
-    <macrodef name="merge-properties">
-        <attribute name="input.dir"/>
-        <attribute name="output"/>
-        <sequential>
-            <concat dest="@{output}" fixlastline="yes">
-                <fileset dir="@{input.dir}"> 
-                    <include name="**/*.properties"/> 
-                </fileset> 
-            </concat> 
-        </sequential>
-    </macrodef>
-    
-    
-    <property name="dita.plugin.org.dita.base.dir" location="${dita.dir}"/>
-    <xmlcatalog id="dita.catalog">
-        <catalogpath path="${dita.plugin.org.dita.base.dir}/catalog-dita.xml"/>
-    </xmlcatalog>
-    
-    <!-- FIXME: Replace absolute paths with relatives. -->
-    <path id="dita.classpath">
-        <pathelement path="/home/stefan/workspace/DITA/dita-ot/lib/xml-resolver-1.2.jar"/>
-        <pathelement path="/home/stefan/workspace/DITA/dita-ot/lib/ant-apache-resolver-1.9.4.jar"/>
-        <pathelement path="/home/stefan/workspace/DITA/dita-ot/lib/saxon-9.1.0.8.jar"/>
-    </path>
-    
-    <!-- Delete the <keyword> elements with duplicate IDs. Only keep the first one. -->
-    <macrodef name="delete-elements-with-duplicate-id">
-        <attribute name="input"/>
-        <attribute name="output"/>
-        <sequential>
-            <property name="delete.elements.xsl" value="${dita.dir}/plugins/org.doctales.javaProperties2Dita/xsl/deleteElementsWithDuplicateIds.xsl"/>
-            <makeurl property="dita.temp.dir.url" file="${user.home}/.dita"/>
-            <xslt processor="trax" 
-                basedir="${dita.dir}"
-                in="@{input}"
-                out="@{output}"
-                style="${delete.elements.xsl}"
-                classpathref="dita.classpath">
-                <factory name="net.sf.saxon.TransformerFactoryImpl"/>
-                <xmlcatalog refid="dita.catalog" />
-            </xslt>
-        </sequential>
-    </macrodef>
     
 </project>
