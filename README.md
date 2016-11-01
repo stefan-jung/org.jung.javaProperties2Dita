@@ -27,11 +27,9 @@ key=value
 <topic id="test.properties">
    <title>test.properties</title>
    <body>
-      <ul>
-         <li>
-            <keyword id="key">value</keyword>
-         </li>
-      </ul>
+      <div>
+          <keyword id="key">value</keyword>
+      </div>
    </body>
 </topic>
 ```
