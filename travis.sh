@@ -1,7 +1,7 @@
 #!/bin/sh
 zip -r org.doctales.javaProperties2Dita.zip . -x *.zip* *.git/* *temp/* *out/*
-curl -LO https://github.com/dita-ot/dita-ot/releases/download/2.3.3/dita-ot-2.3.3.zip
-unzip -q dita-ot-2.3.3.zip
+curl -LO https://github.com/dita-ot/dita-ot/releases/download/2.4/dita-ot-2.4.zip
+unzip -q dita-ot-2.4.zip
 mv dita-ot-*/ dita-ot/
 mv dita-ot/ /tmp/
 chmod +x /tmp/dita-ot/bin/ant
