@@ -9,4 +9,4 @@ chmod +x /tmp/dita-ot/bin/dita
 export ditaot=/tmp/dita-ot
 echo $ditaot
 /tmp/dita-ot/bin/dita --install org.doctales.javaProperties2Dita.zip
-/tmp/dita-ot/bin/ant --buildfile /tmp/dita-ot/plugins/org.doctales.javaProperties2Dita/samples/build.xml
+/tmp/dita-ot/bin/ant -f /tmp/dita-ot/plugins/org.doctales.javaProperties2Dita/samples/build.xml
