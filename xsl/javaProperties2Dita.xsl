@@ -110,19 +110,18 @@
             <xsl:attribute name="id">
                 <xsl:value-of select="$properties.filename"/>
             </xsl:attribute>
+            <xsl:attribute name="translate">no</xsl:attribute>
             <title><xsl:value-of select="$properties.filename"/></title>
             <body>
-                <ul>
+                <div>
                     <xsl:for-each select="$lines">
                         <xsl:variable name="key" select="normalize-space(fn:getKey(.))" as="xs:string+"/>
                         <xsl:variable name="value" select="normalize-space(fn:getValue(.))" as="xs:string+"/>
                         <xsl:choose>
-                            <xsl:when test="$key != '' and $value != ''">
-                                <xsl:element name="li"><xsl:element name="keyword"><xsl:attribute name="id"><xsl:value-of select="$key"/></xsl:attribute><xsl:value-of select="$value"/></xsl:element></xsl:element>                                
-                            </xsl:when>
+                            <xsl:when test="$key != '' and $value != ''"><xsl:element name="keyword"><xsl:attribute name="id"><xsl:value-of select="$key"/></xsl:attribute><xsl:attribute name="translate">no</xsl:attribute><xsl:value-of select="$value"/></xsl:element></xsl:when>
                         </xsl:choose>
                     </xsl:for-each>
-                </ul>
+                </div>
             </body>
         </topic>
     </xsl:template>

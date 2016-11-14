@@ -40,10 +40,11 @@
         </xsl:copy>
     </xsl:template>
     
-    <xsl:template match="li">
-        <xsl:if test="not(keyword/@id = following::keyword/@id)">
-            <xsl:element name="li">
-                <xsl:apply-templates/>
+    <xsl:template match="keyword">
+        <xsl:if test="not(@id = following-sibling::*/@id)">
+            <xsl:element name="keyword">
+              <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
+              <xsl:apply-templates/>
             </xsl:element>
         </xsl:if>
     </xsl:template>
