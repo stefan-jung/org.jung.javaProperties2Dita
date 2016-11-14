@@ -3,6 +3,10 @@ zip -r org.doctales.javaProperties2Dita.zip . -x *.zip* *.git/* *temp/* *out/*
 curl -LO https://github.com/dita-ot/dita-ot/releases/download/2.3.3/dita-ot-2.3.3.zip
 unzip -q dita-ot-2.3.3.zip
 mv dita-ot-*/ dita-ot/
-chmod +x dita-ot/bin/ant
-pwd
-dita-ot/bin/ant -buildfile samples/build.xml
+mv dita-ot/ /tmp/
+chmod +x /tmp/dita-ot/bin/ant
+chmod +x /tmp/dita-ot/bin/dita
+export ditaot=/tmp/dita-ot
+echo $ditaot
+/tmp/dita-ot/bin/dita --install org.doctales.javaProperties2Dita.zip
+/tmp/dita-ot/bin/ant --buildfile /tmp/dita-ot/plugins/org.doctales.javaProperties2Dita/samples/build.xml
