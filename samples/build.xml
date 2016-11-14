@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." name="convert-javaProperties2Dita" default="convert-javaProperties2Dita">
     <import file="../build_javaProperties2Dita.xml"/>
-    <property name="dita.dir" value="../../../dita-ot"/>
+    <property name="dita.dir" value="../../dita-ot"/>
     <target name="convert-javaProperties2Dita">
         <convert-properties-to-dita input="${dita.dir}/plugins/org.doctales.javaProperties2Dita/samples/samples.properties" output="samples.dita"/>
     </target>
