@@ -1,6 +1,8 @@
 language: java
 jdk:
   - oraclejdk8
+env:
+  - dita.dir=dita-ot
 script: bash travis.sh
 notifications:
   slack:
