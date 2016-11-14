@@ -35,13 +35,6 @@ key=value
 ```
 
 
-**Table of Contents**
-
-* [Installation](#installation)
-* [Install Framework](#install-framework)
-* [Usage](#usage)
-
-
 ### Installation
 
 Install the plugin to the DITA-OT with the following command:
@@ -60,19 +53,6 @@ This step is optional. To install the &lt;oXygen/&gt; XML framework, proceed as 
 3. Add the directory of the plugin in the DITA-OT, e.g. `/home/user/workspace/dita-ot/plugins/org.doctales.javaProperties2Dita`.
 
 
-### Usage
+# Using the Plugin
 
-**Convert via &lt;oXygen/&gt; transformation scenario**
-
-1. Open a Java properties file in &lt;oXygen/&gt;.
-2. Launch the transformation sceanrio `Convert Java-Properties 2 DITA`.
-   A DITA file is created in the directory of the input file.
-
-
-**Convert via Apache Ant transformation scenario**
-
-1. Import the `build_javaProperties2Dita.xml` to your Apache Ant build file.
-2. Call the transformation using the custom `<convert-properties-to-dita>` element.
-   ```xml
-   <convert-properties-to-dita input="input.properties" output="output.dita"/>
-   ```
+Please refer to the [documentation](https://doctales.atlassian.net/wiki/display/J2D/org.doctales.javaProperties2Dita).
