@@ -10,13 +10,11 @@ org.doctales.javaProperties2Dita
 
 **org.doctales.javaProperties2Dita** is a plugin for the [DITA-OT](http://dita-ot.github.io) for converting Java property files to DITA. Java property files are simple key-value-files, that are converted to DITA `<keyword>` elements.
 
-
 **Input**
 
 ```
 key=value
 ```
-
 
 **Output**
 
