@@ -4,4 +4,4 @@ curl -LO https://github.com/dita-ot/dita-ot/releases/download/2.3.3/dita-ot-2.3.
 unzip -q dita-ot-2.3.3.zip
 mv dita-ot-*/ dita-ot/
 chmod +x dita-ot/bin/ant
-dita-ot/bin/ant -buildfile samples/build.xml -Ddita.dir=dita-ot
+dita-ot/bin/ant -buildfile samples/build.xml
