@@ -6,7 +6,7 @@
     xmlns:fn="fn"
     xmlns:saxon="http://saxon.sf.net/"
     exclude-result-prefixes="xs fn xd saxon">
-
+    
     <!--
         Copyright 2016 DOCTALES
         
@@ -22,19 +22,19 @@
         See the License for the specific language governing permissions and
         limitations under the License.
     -->
-
+    
     <xsl:param name="lineFeedChar">�</xsl:param>
     <xsl:param name="newlineWithSpace">\n </xsl:param>
     <xsl:param name="newlineWithoutSpace">\n</xsl:param>
-
+    
+    <!-- Force UTF-16 to fix czech and russian encoding issues -->
     <xsl:output method="xml"
-        doctype-public="-//OASIS//DTD DITA Topic//EN"
-        doctype-system="http://docs.oasis-open.org/dita/v1.2/os/dtd1.2/technicalContent/dtd/topic.dtd"
+        doctype-public="-//OASIS//DTD DITA Topic//EN" doctype-system="topic.dtd"
+        encoding="UTF-16"
         indent="yes"/>
-
-    <xsl:param name="text-encoding" as="xs:string" select="'UTF-8'"/>
+    
     <xsl:param name="propertiesFile" as="xs:string"/>
-
+    
     <xsl:function name="fn:getTokens" as="xs:string+">
         <xsl:param name="str" as="xs:string"/>
         <xsl:analyze-string select="concat($str, '�')" regex='(("[^"]*")+|[^,]*)�'>
@@ -43,7 +43,7 @@
             </xsl:matching-substring>
         </xsl:analyze-string>
     </xsl:function>
-
+    
     <xsl:function name="fn:getKey" as="xs:string">
         <xsl:param name="str" as="xs:string"/>
         <xsl:analyze-string select="concat($str, '�')" regex='(("[^"]*")+|[^,]*)�'>
@@ -56,28 +56,42 @@
                         $newlineWithoutSpace, ''),
                         $lineFeedChar, '')"/>&lt;/x>
                 </xsl:variable>
-                <xsl:value-of select="saxon:parse($unparsed)/*/text()"/>
+                <xsl:choose>
+                    <xsl:when test="$unparsed != ''">
+                        <xsl:value-of select="saxon:parse($unparsed)/*/text()"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="'NULL'"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:matching-substring>
         </xsl:analyze-string>
     </xsl:function>
-
+    
     <xsl:function name="fn:getValue" as="xs:string">
         <xsl:param name="str" as="xs:string"/>
         <xsl:analyze-string select="concat($str, '�')" regex='(("[^"]*")+|[^,]*)�'>
             <xsl:matching-substring>
                 <xsl:variable name="unparsed">
                     &lt;x><xsl:value-of select="replace(
-                            replace(
-                            replace(replace(substring-after(., '='), '\\u([0-9a-fA-F]{4})', '&amp;#x$1;'),
-                            $newlineWithSpace, ' '),
-                            $newlineWithoutSpace, ''),
-                            $lineFeedChar, '')"/>&lt;/x>
+                        replace(
+                        replace(replace(substring-after(., '='), '\\u([0-9a-fA-F]{4})', '&amp;#x$1;'),
+                        $newlineWithSpace, ' '),
+                        $newlineWithoutSpace, ''),
+                        $lineFeedChar, '')"/>&lt;/x>
                 </xsl:variable>
-                <xsl:value-of select="saxon:parse($unparsed)/*/text()"/>
+                <xsl:choose>
+                    <xsl:when test="$unparsed != ''">
+                        <xsl:value-of select="saxon:parse($unparsed)/*/text()"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="'NULL'"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:matching-substring>
         </xsl:analyze-string>
     </xsl:function>
-
+    
     <xsl:template name="getFilenameFromPath">
         <xsl:param name="string"/>
         <xsl:param name="char"/>
@@ -93,7 +107,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-
+    
     <xsl:template match="/*">
         <xsl:variable name="properties" select="unparsed-text($propertiesFile)"/>
         <xsl:variable name="properties.filename">
@@ -105,7 +119,7 @@
         <xsl:variable name="inputFilePath" select="base-uri()"/>
         <xsl:variable name="stylesheetFilePath" select="base-uri(document(''))"/>
         <xsl:variable name="lines" select="tokenize($properties, '&#xa;')" as="xs:string+"/>
-
+        
         <topic>
             <xsl:attribute name="id">
                 <xsl:value-of select="$properties.filename"/>
@@ -125,5 +139,5 @@
             </body>
         </topic>
     </xsl:template>
-
+    
 </xsl:stylesheet>
