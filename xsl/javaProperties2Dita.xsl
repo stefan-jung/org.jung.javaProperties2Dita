@@ -26,6 +26,7 @@
     <xsl:param name="lineFeedChar">�</xsl:param>
     <xsl:param name="newlineWithSpace">\n </xsl:param>
     <xsl:param name="newlineWithoutSpace">\n</xsl:param>
+    <xsl:param name="language">en-GB</xsl:param>
     
     <!-- Force UTF-16 to fix czech and russian encoding issues -->
     <xsl:output method="xml"
@@ -123,6 +124,9 @@
         <topic>
             <xsl:attribute name="id">
                 <xsl:value-of select="$properties.filename"/>
+            </xsl:attribute>
+            <xsl:attribute name="xml:lang">
+                <xsl:value-of select="$language"/>
             </xsl:attribute>
             <xsl:attribute name="translate">no</xsl:attribute>
             <title><xsl:value-of select="$properties.filename"/></title>
