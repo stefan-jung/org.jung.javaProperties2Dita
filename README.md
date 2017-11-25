@@ -53,4 +53,4 @@ This step is optional. To install the &lt;oXygen/&gt; XML framework, proceed as 
 
 # Using the Plugin
 
-Please refer to the [documentation](https://doctales.atlassian.net/wiki/display/J2D/org.doctales.javaProperties2Dita).
+Please refer to the [documentation](https://doctales.atlassian.net/wiki/x/0wC_AQ).
