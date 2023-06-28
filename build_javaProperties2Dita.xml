@@ -2,7 +2,7 @@
 <project basedir="." name="javaProperties2Dita">
 
   <!--
-    Copyright 2016 DOCTALES
+    Copyright 2023 Stefan Jung
     
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -32,9 +32,9 @@
             <include name="**/*.jar" />
           </fileset>
         </classpath>
-        <arg value="-s:${dita.dir}/plugins/org.doctales.javaProperties2Dita/xsl/dummy.xml"/>
+        <arg value="-s:${dita.dir}/plugins/org.jung.javaProperties2Dita/xsl/dummy.xml"/>
         <arg value="-o:@{output}"/>
-        <arg value="-xsl:${dita.dir}/plugins/org.doctales.javaProperties2Dita/xsl/javaProperties2Dita.xsl"/>
+        <arg value="-xsl:${dita.dir}/plugins/org.jung.javaProperties2Dita/xsl/javaProperties2Dita.xsl"/>
         <arg value="propertiesFile=@{input}"/>
       </java>
     </sequential>
@@ -53,7 +53,7 @@
       <java classname="net.sf.saxon.Transform" classpathref="@{classpathref}">
         <arg value="-s:@{input}"/>
         <arg value="-o:@{output}"/>
-        <arg value="-xsl:${dita.dir}/plugins/org.doctales.javaProperties2Dita/xsl/deleteElementsWithDuplicateIds.xsl"/>
+        <arg value="-xsl:${dita.dir}/plugins/org.jung.javaProperties2Dita/xsl/deleteElementsWithDuplicateIds.xsl"/>
         <arg value="-catalog:${dita.dir}/plugins/org.oasis-open.dita.v1_3/catalog.xml"/>
       </java>
     </sequential>

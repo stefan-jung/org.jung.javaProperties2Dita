@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-
 <!--
-    Copyright 2016 DOCTALES
+    Copyright 2023 Stefan Jung
     
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -16,4 +15,4 @@
     limitations under the License.
 -->
 
-<plugin id="org.doctales.javaProperties2Dita"/>
+<plugin id="org.jung.javaProperties2Dita"/>

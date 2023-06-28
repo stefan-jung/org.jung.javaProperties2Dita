@@ -8,7 +8,7 @@
     exclude-result-prefixes="xs fn xd saxon">
     
     <!--
-        Copyright 2016 DOCTALES
+        Copyright 2023 Stefan Jung
         
         Licensed under the Apache License, Version 2.0 (the "License");
         you may not use this file except in compliance with the License.
